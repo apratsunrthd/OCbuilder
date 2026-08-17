@@ -297,6 +297,15 @@ input[type="text"]:focus, textarea:focus, select:focus {
   border-bottom: 2px solid var(--accent);
 }
 
+.sheet-header .sheet-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
 .sheet-header .sheet-name {
   font-family: "Cormorant Garamond", serif;
   font-weight: 700;

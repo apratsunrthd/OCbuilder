@@ -23,7 +23,7 @@
     return {
       id: genId(),
       updatedAt: Date.now(),
-      identity: { name: "", nicknames: "", age: "", species: "", gender: "", occupation: "", affiliation: "", home: "" },
+      identity: { name: "", fandom: "", nicknames: "", age: "", species: "", gender: "", occupation: "", affiliation: "", home: "" },
       appearance: { height: "", build: "", eyes: "", hair: "", description: "", distinguishing: "", outfit: "" },
       personality: { traits: "", strengths: "", flaws: "", likes: "", dislikes: "", fears: "", quirks: "" },
       voice: { pattern: "", catchphrases: "", habits: "" },
@@ -294,6 +294,7 @@
 
     let html = `
       <div class="sheet-header">
+        <div class="sheet-eyebrow">${esc(id.fandom?.trim() || "Original Character")}</div>
         <h1 class="sheet-name">${esc(id.name?.trim() || "Untitled Character")}</h1>
         ${headline ? `<div class="sheet-tagline">${esc(headline)}</div>` : ""}
         ${id.nicknames ? `<div class="sheet-meta">"${esc(id.nicknames)}"</div>` : ""}
