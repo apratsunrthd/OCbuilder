@@ -1,0 +1,422 @@
+/* ============================================================
+   OC Builder — stylesheet
+   Palette: ivory paper + ink + a single muted burgundy accent
+   ============================================================ */
+
+:root {
+  --paper: #faf6ef;
+  --paper-raised: #ffffff;
+  --ink: #2b2420;
+  --ink-soft: #6b5f54;
+  --line: #e2d9c8;
+  --accent: #8a3b3b;
+  --accent-soft: #f1e4e0;
+  --gold: #b8925a;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(43, 36, 32, 0.06), 0 6px 20px rgba(43, 36, 32, 0.06);
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+h1, h2, h3, .display-font {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+/* ---------------- Topbar ---------------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.5rem;
+  background: var(--paper-raised);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-mark {
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.brand-name {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.topbar-divider {
+  width: 1px;
+  height: 1.5rem;
+  background: var(--line);
+  margin: 0 0.25rem;
+}
+
+#characterSelect {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  max-width: 200px;
+}
+
+/* ---------------- Buttons ---------------- */
+
+.btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btn:hover { background: var(--accent-soft); border-color: var(--gold); }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover { background: #722f2f; }
+
+.btn-danger { color: var(--accent); }
+.btn-danger:hover { background: var(--accent-soft); border-color: var(--accent); }
+
+.btn-add {
+  margin: 0.4rem 0 1.1rem;
+  border-style: dashed;
+  color: var(--ink-soft);
+}
+
+/* ---------------- Layout ---------------- */
+
+.layout {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 6rem;
+}
+
+/* ---------------- Cards / sections ---------------- */
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.1rem;
+  overflow: hidden;
+}
+
+.identity-card {
+  padding: 1.4rem 1.5rem;
+  border-top: 3px solid var(--accent);
+}
+
+.section > .section-title {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  position: relative;
+}
+
+.section > .section-title::-webkit-details-marker { display: none; }
+
+.section > .section-title::before {
+  content: "❖";
+  color: var(--gold);
+  font-size: 0.85rem;
+}
+
+.section > .section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  margin-left: 0.75rem;
+}
+
+.section[open] > .section-title {
+  border-bottom: 1px solid var(--line);
+}
+
+.section-body {
+  padding: 1.2rem 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* ---------------- Fields ---------------- */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.field-wide { grid-column: 1 / -1; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.field-label em {
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+input[type="text"], textarea, select {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  resize: vertical;
+  width: 100%;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------------- Repeatable lists ---------------- */
+
+.repeat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.repeat-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.repeat-row-relationship {
+  grid-template-columns: minmax(100px, 0.6fr) minmax(100px, 0.6fr) 1fr auto;
+}
+
+.row-remove {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  border-radius: 6px;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.row-remove:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------------- Preview / print sheet ---------------- */
+
+.preview-pane { display: none; }
+.preview-pane.active { display: block; }
+
+.close-preview, .print-btn {
+  margin-bottom: 1rem;
+}
+.print-btn { float: right; }
+
+.sheet {
+  clear: both;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2.75rem;
+}
+
+.sheet-header {
+  text-align: center;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.sheet-header .sheet-name {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.sheet-header .sheet-tagline {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.sheet-header .sheet-meta {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+.sheet-section {
+  margin-bottom: 1.6rem;
+}
+
+.sheet-section h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+}
+
+.sheet-section h2::before { content: "❖"; font-size: 0.75rem; color: var(--gold); }
+.sheet-section h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1.5rem;
+}
+
+.sheet-kv {
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.sheet-kv .k {
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.sheet-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.tag {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+.sheet-list-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.sheet-list-item:last-child { border-bottom: none; }
+.sheet-list-item .item-title {
+  font-weight: 600;
+}
+.sheet-list-item .item-sub {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.sheet-empty {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 640px) {
+  .field-grid, .sheet-grid { grid-template-columns: 1fr; }
+  .repeat-row, .repeat-row-relationship { grid-template-columns: 1fr; }
+  .topbar { padding: 0.75rem 1rem; }
+}
+
+/* ---------------- Print ---------------- */
+
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .layout { max-width: none; padding: 0; margin: 0; }
+  .preview-pane { display: block !important; }
+  .sheet {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+}

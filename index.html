@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OC Builder — Character Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar no-print">
+  <div class="topbar-brand">
+    <span class="brand-mark">❖</span>
+    <span class="brand-name">OC Builder</span>
+  </div>
+
+  <div class="topbar-controls">
+    <select id="characterSelect" title="Saved characters"></select>
+    <button id="newBtn" class="btn">New</button>
+    <button id="duplicateBtn" class="btn">Duplicate</button>
+    <button id="deleteBtn" class="btn btn-danger">Delete</button>
+    <span class="topbar-divider"></span>
+    <button id="importBtn" class="btn">Import…</button>
+    <input type="file" id="importFile" accept="application/json" hidden>
+    <button id="exportBtn" class="btn">Export JSON</button>
+    <button id="previewBtn" class="btn btn-primary">Preview &amp; Print</button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- ============ EDIT FORM ============ -->
+  <form id="sheetForm" class="sheet-form no-print" autocomplete="off">
+
+    <section class="card identity-card">
+      <div class="field-grid">
+        <label class="field field-wide">
+          <span class="field-label">Name</span>
+          <input type="text" data-path="identity.name" placeholder="Character's full name">
+        </label>
+        <label class="field">
+          <span class="field-label">Nicknames / Aliases</span>
+          <input type="text" data-path="identity.nicknames" placeholder="Comma-separated">
+        </label>
+        <label class="field">
+          <span class="field-label">Age</span>
+          <input type="text" data-path="identity.age" placeholder="e.g. 24, or 'appears 30'">
+        </label>
+        <label class="field">
+          <span class="field-label">Species / Race</span>
+          <input type="text" data-path="identity.species">
+        </label>
+        <label class="field">
+          <span class="field-label">Gender &amp; Pronouns</span>
+          <input type="text" data-path="identity.gender">
+        </label>
+        <label class="field">
+          <span class="field-label">Occupation / Role</span>
+          <input type="text" data-path="identity.occupation">
+        </label>
+        <label class="field">
+          <span class="field-label">Affiliation / Faction</span>
+          <input type="text" data-path="identity.affiliation">
+        </label>
+        <label class="field">
+          <span class="field-label">Home / Origin</span>
+          <input type="text" data-path="identity.home">
+        </label>
+      </div>
+    </section>
+
+    <details class="card section" open>
+      <summary class="section-title">Appearance</summary>
+      <div class="section-body">
+        <div class="field-grid">
+          <label class="field">
+            <span class="field-label">Height</span>
+            <input type="text" data-path="appearance.height">
+          </label>
+          <label class="field">
+            <span class="field-label">Build</span>
+            <input type="text" data-path="appearance.build">
+          </label>
+          <label class="field">
+            <span class="field-label">Eyes</span>
+            <input type="text" data-path="appearance.eyes">
+          </label>
+          <label class="field">
+            <span class="field-label">Hair</span>
+            <input type="text" data-path="appearance.hair">
+          </label>
+        </div>
+        <label class="field">
+          <span class="field-label">General Description</span>
+          <textarea data-path="appearance.description" rows="3" placeholder="Overall look, presence, how they carry themselves..."></textarea>
+        </label>
+        <label class="field">
+          <span class="field-label">Distinguishing Features</span>
+          <textarea data-path="appearance.distinguishing" rows="2" placeholder="Scars, markings, tattoos, unusual traits..."></textarea>
+        </label>
+        <label class="field">
+          <span class="field-label">Typical Outfit</span>
+          <textarea data-path="appearance.outfit" rows="2"></textarea>
+        </label>
+      </div>
+    </details>
+
+    <details class="card section" open>
+      <summary class="section-title">Personality</summary>
+      <div class="section-body">
+        <label class="field">
+          <span class="field-label">Core Traits <em>(comma-separated)</em></span>
+          <input type="text" data-path="personality.traits" placeholder="e.g. stubborn, loyal, dry-witted">
+        </label>
+        <div class="field-grid">
+          <label class="field">
+            <span class="field-label">Strengths</span>
+            <textarea data-path="personality.strengths" rows="2"></textarea>
+          </label>
+          <label class="field">
+            <span class="field-label">Flaws</span>
+            <textarea data-path="personality.flaws" rows="2"></textarea>
+          </label>
+          <label class="field">
+            <span class="field-label">Likes</span>
+            <textarea data-path="personality.likes" rows="2"></textarea>
+          </label>
+          <label class="field">
+            <span class="field-label">Dislikes</span>
+            <textarea data-path="personality.dislikes" rows="2"></textarea>
+          </label>
+          <label class="field">
+            <span class="field-label">Fears</span>
+            <textarea data-path="personality.fears" rows="2"></textarea>
+          </label>
+          <label class="field">
+            <span class="field-label">Quirks / Habits</span>
+            <textarea data-path="personality.quirks" rows="2"></textarea>
+          </label>
+        </div>
+      </div>
+    </details>
+
+    <details class="card section">
+      <summary class="section-title">Voice &amp; Mannerisms</summary>
+      <div class="section-body">
+        <label class="field">
+          <span class="field-label">Speech Pattern</span>
+          <textarea data-path="voice.pattern" rows="2" placeholder="Tone, vocabulary, accent, rhythm..."></textarea>
+        </label>
+        <label class="field">
+          <span class="field-label">Catchphrases / Verbal Tics</span>
+          <textarea data-path="voice.catchphrases" rows="2"></textarea>
+        </label>
+        <label class="field">
+          <span class="field-label">Physical Habits</span>
+          <textarea data-path="voice.habits" rows="2" placeholder="Gestures, tells, nervous habits..."></textarea>
+        </label>
+      </div>
+    </details>
+
+    <details class="card section">
+      <summary class="section-title">Abilities &amp; Skills</summary>
+      <div class="section-body">
+        <div class="repeat-list" id="abilitiesList" data-list="abilities"></div>
+        <button type="button" class="btn btn-add" data-add="abilities">+ Add Ability / Skill</button>
+
+        <div class="repeat-list" id="weaknessesList" data-list="weaknesses"></div>
+        <button type="button" class="btn btn-add" data-add="weaknesses">+ Add Weakness / Limitation</button>
+      </div>
+    </details>
+
+    <details class="card section">
+      <summary class="section-title">Backstory</summary>
+      <div class="section-body">
+        <label class="field">
+          <span class="field-label">Summary</span>
+          <textarea data-path="backstory.summary" rows="4" placeholder="Origin story, formative history..."></textarea>
+        </label>
+        <div class="repeat-list" id="timelineList" data-list="timeline"></div>
+        <button type="button" class="btn btn-add" data-add="timeline">+ Add Timeline Event</button>
+      </div>
+    </details>
+
+    <details class="card section">
+      <summary class="section-title">Relationships</summary>
+      <div class="section-body">
+        <div class="repeat-list" id="relationshipsList" data-list="relationships"></div>
+        <button type="button" class="btn btn-add" data-add="relationships">+ Add Relationship</button>
+      </div>
+    </details>
+
+    <details class="card section">
+      <summary class="section-title">Goals, Motivation &amp; Secrets</summary>
+      <div class="section-body">
+        <label class="field">
+          <span class="field-label">Goals</span>
+          <textarea data-path="goals.goals" rows="2" placeholder="What do they want?"></textarea>
+        </label>
+        <label class="field">
+          <span class="field-label">Motivation</span>
+          <textarea data-path="goals.motivation" rows="2" placeholder="Why do they want it?"></textarea>
+        </label>
+        <label class="field">
+          <span class="field-label">Secret</span>
+          <textarea data-path="goals.secret" rows="2" placeholder="What are they hiding?"></textarea>
+        </label>
+      </div>
+    </details>
+
+    <details class="card section">
+      <summary class="section-title">Notes</summary>
+      <div class="section-body">
+        <textarea data-path="notes" rows="4" placeholder="Anything else — trivia, inspiration, plot hooks..."></textarea>
+      </div>
+    </details>
+
+  </form>
+
+  <!-- ============ PRINT / PREVIEW SHEET ============ -->
+  <div id="previewPane" class="preview-pane">
+    <button id="closePreview" class="btn no-print close-preview">&larr; Back to editor</button>
+    <button id="printBtn" class="btn btn-primary no-print print-btn">Print / Save as PDF</button>
+
+    <article id="sheetPreview" class="sheet">
+      <!-- populated by js -->
+    </article>
+  </div>
+
+</main>
+
+<template id="tpl-abilities">
+  <div class="repeat-row">
+    <input type="text" class="ability-name" placeholder="Name">
+    <input type="text" class="ability-desc" placeholder="Description">
+    <button type="button" class="row-remove" title="Remove">&times;</button>
+  </div>
+</template>
+
+<template id="tpl-weaknesses">
+  <div class="repeat-row">
+    <input type="text" class="weakness-name" placeholder="Name">
+    <input type="text" class="weakness-desc" placeholder="Description">
+    <button type="button" class="row-remove" title="Remove">&times;</button>
+  </div>
+</template>
+
+<template id="tpl-timeline">
+  <div class="repeat-row repeat-row-timeline">
+    <input type="text" class="timeline-when" placeholder="Age / Date">
+    <input type="text" class="timeline-event" placeholder="What happened">
+    <button type="button" class="row-remove" title="Remove">&times;</button>
+  </div>
+</template>
+
+<template id="tpl-relationships">
+  <div class="repeat-row repeat-row-relationship">
+    <input type="text" class="rel-name" placeholder="Name">
+    <input type="text" class="rel-type" placeholder="Relation (e.g. rival, mentor)">
+    <input type="text" class="rel-desc" placeholder="Description">
+    <button type="button" class="row-remove" title="Remove">&times;</button>
+  </div>
+</template>
+
+<script src="js/app.js"></script>
+</body>
+</html>
